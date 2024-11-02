@@ -1,7 +1,7 @@
 <?php
 /*
  * Plugin Name: Options for Twenty Twenty-One
- * Version: 1.7.7
+ * Version: 1.7.8
  * Plugin URI: https://webd.uk/product/options-for-twenty-twenty-one-upgrade/
  * Description: Adds powerful customizer options to modify all aspects of the default Wordpress theme Twenty Twenty-One
  * Author: Webd Ltd
@@ -21,7 +21,7 @@ if (!class_exists('options_for_twenty_twenty_one_class')) {
 
 	class options_for_twenty_twenty_one_class {
 
-        public static $version = '1.7.7';
+        public static $version = '1.7.8';
 
 		function __construct() {
 
@@ -39,7 +39,6 @@ if (!class_exists('options_for_twenty_twenty_one_class')) {
 
                 add_action('after_setup_theme', array($this, 'oftto_editor_styles'), 11);
                 add_filter('pre_http_request', array($this, 'oftto_pre_http_request'), 10, 3);
-                add_action('customize_controls_enqueue_scripts', array($this, 'oftto_enqueue_customizer_css'));
                 add_action('customize_controls_enqueue_scripts', array($this, 'oftto_enqueue_customize_controls_js'));
 
                 add_filter('plugin_action_links_' . plugin_basename(__FILE__), array($this, 'oftto_add_plugin_action_links'));
@@ -4204,12 +4203,6 @@ color: <?php echo $mod; ?>;
 
             wp_enqueue_script('oftn-customize-controls', plugin_dir_url(__FILE__) . 'js/customize-controls.js', array('jquery', 'customize-controls'), ofttoCommon::plugin_version(), true);
 
-
-        }
-
-        function oftto_enqueue_customizer_css() {
-
-            wp_enqueue_style('oftto-customizer-css', plugin_dir_url( __FILE__ ) . 'css/theme-customizer.css', array(), self::$version);
 
         }
 
