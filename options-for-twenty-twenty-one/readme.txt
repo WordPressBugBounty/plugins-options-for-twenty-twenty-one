@@ -3,9 +3,9 @@ Contributors: domainsupport
 Donate link: https://webd.uk/product/options-for-twenty-twenty-one-upgrade/
 Tags: twenty-twenty-one, twentytwentyone, change, customize, modify
 Requires at least: 4.6
-Tested up to: 6.7
+Tested up to: 6.9
 Requires PHP: 5.6
-Stable tag: 1.7.8
+Stable tag: 1.7.9
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -223,6 +223,9 @@ Easily use this plugin to modify WordPress default Twenty Twenty-One theme ...
 Changing fonts in a WordPress theme is not a customisation that is limited to the Twenty Twenty-One theme. There are lots of plugins out there that already perform this task.
 
 == Changelog ==
+
+= 1.7.9 =
+* General housekeeping preparing for "Plugin Check" code review
 
 = 1.7.8 =
 * Remove Customizer CSS due to incompatible change introduced in WordPress v6.7
@@ -527,5 +530,5 @@ Changing fonts in a WordPress theme is not a customisation that is limited to th
 
 == Upgrade Notice ==
 
-= 1.7.8 =
-* Remove Customizer CSS due to incompatible change introduced in WordPress v6.7
+= 1.7.9 =
+* General housekeeping preparing for "Plugin Check" code review

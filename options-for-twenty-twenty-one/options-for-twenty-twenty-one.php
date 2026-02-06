@@ -1,11 +1,13 @@
 <?php
 /*
  * Plugin Name: Options for Twenty Twenty-One
- * Version: 1.7.8
+ * Version: 1.7.9
  * Plugin URI: https://webd.uk/product/options-for-twenty-twenty-one-upgrade/
  * Description: Adds powerful customizer options to modify all aspects of the default Wordpress theme Twenty Twenty-One
  * Author: Webd Ltd
  * Author URI: https://webd.uk
+ * License: GPLv2 or later
+ * License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  * Text Domain: options-for-twenty-twenty-one
  */
 
@@ -21,7 +23,7 @@ if (!class_exists('options_for_twenty_twenty_one_class')) {
 
 	class options_for_twenty_twenty_one_class {
 
-        public static $version = '1.7.8';
+        public static $version = '1.7.9';
 
 		function __construct() {
 
@@ -1412,7 +1414,8 @@ if (class_exists('woocommerce')) {
             ));
             $wp_customize->add_control('inject_breadcrumbs', array(
                 'label'         => __('Inject Breadcrumbs', 'options-for-twenty-twenty-one'),
-                'description'   => sprintf(wp_kses(__('Inject <a href="%s">Yoast SEO</a> or <a href="%s">Breadcrumb NavXT</a> breadcrumbs above page content.', 'options-for-twenty-twenty-one'), array('a' => array('href' => array()))), esc_url(admin_url('plugin-install.php?s=wordpress-seo&tab=search&type=term')), esc_url(admin_url('plugin-install.php?s=breadcrumb-navxt&tab=search&type=term'))),
+/* translators: links to plugin installer */
+                'description'   => sprintf(wp_kses(__('Inject <a href="%1$s">Yoast SEO</a> or <a href="%2$s">Breadcrumb NavXT</a> breadcrumbs above page content.', 'options-for-twenty-twenty-one'), array('a' => array('href' => array()))), esc_url(admin_url('plugin-install.php?s=wordpress-seo&tab=search&type=term')), esc_url(admin_url('plugin-install.php?s=breadcrumb-navxt&tab=search&type=term'))),
                 'section'       => 'oftto_content',
                 'settings'      => 'inject_breadcrumbs',
                 'type'          => 'checkbox'
@@ -2674,12 +2677,12 @@ if (class_exists('woocommerce')) {
 ?>
 @media only screen and (min-width: 482px) {
 	:root {
-		--responsive--aligndefault-width: min(calc(100vw - 4 * var(--global--spacing-horizontal)), <?php echo $mod; ?>px);
+		--responsive--aligndefault-width: min(calc(100vw - 4 * var(--global--spacing-horizontal)), <?php echo wp_kses($mod, 'strip'); ?>px);
 	}
 }
 @media only screen and (min-width: 822px) {
 	:root {
-		--responsive--aligndefault-width: min(calc(100vw - 8 * var(--global--spacing-horizontal)), <?php echo $mod; ?>px);
+		--responsive--aligndefault-width: min(calc(100vw - 8 * var(--global--spacing-horizontal)), <?php echo wp_kses($mod, 'strip'); ?>px);
 	}
 }
 @media only screen and (min-width: 482px) and (max-width: 821px) {
@@ -2708,7 +2711,7 @@ if (class_exists('woocommerce')) {
 		max-width: calc(50% - 50px);
 	}
 }<?php if (($mod + 200) > 822) { ?>
-@media only screen and (min-width: 822px) and (max-width: <?php echo $mod + 200; ?>px) {
+@media only screen and (min-width: 822px) and (max-width: <?php echo wp_kses($mod + 200, 'strip'); ?>px) {
 	.post-thumbnail,
 	.entry-content .wp-audio-shortcode,
 	.entry-content > *:not(.alignwide):not(.alignfull):not(.alignleft):not(.alignright):not(.wp-block-separator):not(.woocommerce),
@@ -2734,7 +2737,7 @@ if (class_exists('woocommerce')) {
 		max-width: calc(50% - 100px);
 	}
 }<?php } ?>
-@media only screen and (min-width: <?php echo $mod + 201; ?>px) {
+@media only screen and (min-width: <?php echo wp_kses($mod + 201, 'strip'); ?>px) {
 	.post-thumbnail,
 	.entry-content .wp-audio-shortcode,
 	.entry-content > *:not(.alignwide):not(.alignfull):not(.alignleft):not(.alignright):not(.wp-block-separator):not(.woocommerce),
@@ -2746,18 +2749,18 @@ if (class_exists('woocommerce')) {
 	.entry-content > .alignright,
 	.author-bio,
 	.search-form {
-		max-width: <?php echo $mod; ?>px;
+		max-width: <?php echo wp_kses($mod, 'strip'); ?>px;
 	}
 	.author-bio.show-avatars .author-bio-content {
-		max-width: <?php echo $mod -90; ?>px;
+		max-width: <?php echo wp_kses($mod - 90, 'strip'); ?>px;
 	}
 	.entry-content > .alignleft,
 	.entry-content > .alignright {
-		margin-right: calc(0.5 * (100vw - <?php echo $mod; ?>px));
+		margin-right: calc(0.5 * (100vw - <?php echo wp_kses($mod, 'strip'); ?>px));
 	}
 	.entry-content > .alignleft,
 	.entry-content > .alignright {
-		max-width: calc(0.5 * <?php echo $mod; ?>px);
+		max-width: calc(0.5 * <?php echo wp_kses($mod, 'strip'); ?>px);
 	}
 }
 <?php
@@ -2806,10 +2809,10 @@ if (class_exists('woocommerce')) {
 ?>
 @media only screen and (min-width: 822px) {
 	:root {
-		--responsive--alignwide-width: min(calc(100vw - 8 * var(--global--spacing-horizontal)), <?php echo $mod; ?>px);
+		--responsive--alignwide-width: min(calc(100vw - 8 * var(--global--spacing-horizontal)), <?php echo wp_kses($mod, 'strip'); ?>px);
 	}
 }
-@media only screen and (min-width: 822px) and (max-width: <?php echo $mod + 200; ?>px) {
+@media only screen and (min-width: 822px) and (max-width: <?php echo wp_kses($mod + 200, 'strip'); ?>px) {
     .widget-area,
     .pagination,
     .comments-pagination,
@@ -2834,7 +2837,7 @@ if (class_exists('woocommerce')) {
     	width: calc(100vw - 200px);
     }
 }
-@media only screen and (min-width: <?php echo $mod + 201; ?>px) {
+@media only screen and (min-width: <?php echo wp_kses($mod + 201, 'strip'); ?>px) {
     .widget-area,
     .pagination,
     .comments-pagination,
@@ -2846,7 +2849,7 @@ if (class_exists('woocommerce')) {
     .wp-block-pullquote.alignwide > p,
     .wp-block-pullquote.alignwide blockquote,
     hr.wp-block-separator:not(.is-style-dots).alignwide {
-    	max-width: <?php echo $mod; ?>px;
+    	max-width: <?php echo wp_kses($mod, 'strip'); ?>px;
     }
     .entry-header .post-thumbnail,
     .singular .post-thumbnail,
@@ -2856,7 +2859,7 @@ if (class_exists('woocommerce')) {
     .singular .post-thumbnail,
     .alignfull [class*=inner-container] > .alignwide,
     .alignwide [class*=inner-container] > .alignwide {
-    	width: <?php echo $mod; ?>px;
+    	width: <?php echo wp_kses($mod, 'strip'); ?>px;
     }
 }
 <?php
@@ -2871,7 +2874,7 @@ if (class_exists('woocommerce')) {
 
 ?>
 .woocommerce .content-area {
-    max-width: var(--responsive--align<?php echo $mod; ?>-width);
+    max-width: var(--responsive--align<?php echo wp_kses($mod, 'strip'); ?>-width);
     margin-left: auto;
     margin-right: auto;
     padding: 0;
@@ -2922,15 +2925,15 @@ if (class_exists('woocommerce')) {
                     if (!$alignwide_max_width) { $alignwide_max_width = 1240; }
 
 ?>
-@media (min-width: <?php echo $alignwide_max_width; ?>px) {
-    .<?php echo $taxonomy; ?> .page-header {
+@media (min-width: <?php echo wp_kses($alignwide_max_width, 'strip'); ?>px) {
+    .<?php echo wp_kses($taxonomy, 'strip'); ?> .page-header {
         max-width: none;
     }
 }
-.<?php echo $taxonomy; ?> .search-result-count {
+.<?php echo wp_kses($taxonomy, 'strip'); ?> .search-result-count {
     max-width: none;
 }
-.<?php echo $taxonomy; ?> .site-main {
+.<?php echo wp_kses($taxonomy, 'strip'); ?> .site-main {
 	display: flex;
 	flex-wrap: wrap;
 	padding-left: 0;
@@ -2938,42 +2941,42 @@ if (class_exists('woocommerce')) {
 	width: 100%;
 }
 @media (min-width: 482px) {
-	.<?php echo $taxonomy; ?> .site-main {
+	.<?php echo wp_kses($taxonomy, 'strip'); ?> .site-main {
         padding-left: 1rem;
         padding-right: 1rem;
     }
 }
-.<?php echo $taxonomy; ?> .site-main>* {
+.<?php echo wp_kses($taxonomy, 'strip'); ?> .site-main>* {
 	padding: 1rem;
 	width: 100%;
 }
-.<?php echo $taxonomy; ?> .site-main>article {
+.<?php echo wp_kses($taxonomy, 'strip'); ?> .site-main>article {
 	margin: 0;
 }
 @media (min-width: 482px) {
-	.<?php echo $taxonomy; ?> .site-main>article {
+	.<?php echo wp_kses($taxonomy, 'strip'); ?> .site-main>article {
         width: 50%;
     }
 }
 @media (min-width: 822px) {
-	.<?php echo $taxonomy; ?> .site-main>article {
+	.<?php echo wp_kses($taxonomy, 'strip'); ?> .site-main>article {
         width: 25%;
     }
 }
-.<?php echo $taxonomy; ?> .site-main>article>.entry-header {
+.<?php echo wp_kses($taxonomy, 'strip'); ?> .site-main>article>.entry-header {
 	width: 100%;
 	position: relative;
 	margin: 0;
 }
-.<?php echo $taxonomy; ?> .site-main>article:not(.has-post-thumbnail)>.entry-header {
+.<?php echo wp_kses($taxonomy, 'strip'); ?> .site-main>article:not(.has-post-thumbnail)>.entry-header {
 	border: 1px solid #28303d;
 }
-.<?php echo $taxonomy; ?> .site-main>article>.entry-header::after {
+.<?php echo wp_kses($taxonomy, 'strip'); ?> .site-main>article>.entry-header::after {
 	display: block;
 	content: '';
 	padding-bottom: 65%;
 }
-.<?php echo $taxonomy; ?> .site-main>article>.entry-header>.entry-title {
+.<?php echo wp_kses($taxonomy, 'strip'); ?> .site-main>article>.entry-header>.entry-title {
 	position: absolute;
 	z-index: 2;
 	height: 100%;
@@ -2981,21 +2984,21 @@ if (class_exists('woocommerce')) {
 	text-align: center;
 }
 @media (max-width: 482px) {
-	.<?php echo $taxonomy; ?> .site-main>article>.entry-header>.entry-title {
+	.<?php echo wp_kses($taxonomy, 'strip'); ?> .site-main>article>.entry-header>.entry-title {
         font-size: 8vw;
     }
 }
 @media (min-width: 482px) and (max-width: 821px) {
-	.<?php echo $taxonomy; ?> .site-main>article>.entry-header>.entry-title {
+	.<?php echo wp_kses($taxonomy, 'strip'); ?> .site-main>article>.entry-header>.entry-title {
         font-size: 4vw;
     }
 }
 @media (min-width: 822px) {
-	.<?php echo $taxonomy; ?> .site-main>article>.entry-header>.entry-title {
+	.<?php echo wp_kses($taxonomy, 'strip'); ?> .site-main>article>.entry-header>.entry-title {
         font-size: 2vw;
     }
 }
-.<?php echo $taxonomy; ?> .site-main>article>.entry-header>.entry-title>a {
+.<?php echo wp_kses($taxonomy, 'strip'); ?> .site-main>article>.entry-header>.entry-title>a {
 	display: flex;
     justify-content: center;
 	padding: 0 1rem;
@@ -3005,13 +3008,13 @@ if (class_exists('woocommerce')) {
 	text-transform: uppercase;
 	font-weight: 900;
 }
-.<?php echo $taxonomy; ?> .site-main>article.has-post-thumbnail>.entry-header>.entry-title>a {
+.<?php echo wp_kses($taxonomy, 'strip'); ?> .site-main>article.has-post-thumbnail>.entry-header>.entry-title>a {
 	text-shadow: -1px -1px 0 var(--global--color-background), 1px -1px 0 var(--global--color-background), -1px 1px 0 var(--global--color-background), 1px 1px 0 var(--global--color-background);
 }
-.<?php echo $taxonomy; ?> .site-main>article>.entry-header>.post-thumbnail {
+.<?php echo wp_kses($taxonomy, 'strip'); ?> .site-main>article>.entry-header>.post-thumbnail {
 	margin: 0;
 }
-.<?php echo $taxonomy; ?> .site-main>article>.entry-header>.post-thumbnail img {
+.<?php echo wp_kses($taxonomy, 'strip'); ?> .site-main>article>.entry-header>.post-thumbnail img {
 	position: absolute;
 	width: 100% !important;
 	height: 100% !important;
@@ -3020,17 +3023,17 @@ if (class_exists('woocommerce')) {
 	margin: 0;
 	z-index: 1;
 }
-.<?php echo $taxonomy; ?> .site-main>article>.entry-header>.post-thumbnail figcaption,
-.<?php echo $taxonomy; ?> .site-main>article>.entry-footer,
-.<?php echo $taxonomy; ?> .site-main>article>.entry-content {
+.<?php echo wp_kses($taxonomy, 'strip'); ?> .site-main>article>.entry-header>.post-thumbnail figcaption,
+.<?php echo wp_kses($taxonomy, 'strip'); ?> .site-main>article>.entry-footer,
+.<?php echo wp_kses($taxonomy, 'strip'); ?> .site-main>article>.entry-content {
 	display: none;
 }
-.<?php echo $taxonomy; ?> .pagination {
+.<?php echo wp_kses($taxonomy, 'strip'); ?> .pagination {
 padding: 0;
 max-width: none;
 border: none;
 }
-.<?php echo $taxonomy; ?> .pagination .nav-links {
+.<?php echo wp_kses($taxonomy, 'strip'); ?> .pagination .nav-links {
 padding: 1rem;
 border-top: 3px solid var(--global--color-border);
 max-width: var(--responsive--alignwide-width);
@@ -3048,14 +3051,14 @@ margin: var(--global--spacing-vertical) auto;
 
 ?>
 <?php echo (get_theme_mod('site_wide_header_height') ? '' : '.home '); ?>#masthead {
-	min-height: <?php echo $mod; ?>vh;
+	min-height: <?php echo wp_kses($mod, 'strip'); ?>vh;
 }
 <?php echo (get_theme_mod('site_wide_header_height') ? '' : '.home'); ?>.admin-bar #masthead {
-	min-height: calc(<?php echo $mod; ?>vh - 32px);
+	min-height: calc(<?php echo wp_kses($mod, 'strip'); ?>vh - 32px);
 }
 @media screen and (max-width: 782px) {
     <?php echo (get_theme_mod('site_wide_header_height') ? '' : '.home'); ?>.admin-bar #masthead {
-    	min-height: calc(<?php echo $mod; ?>vh - 46px);
+    	min-height: calc(<?php echo wp_kses($mod, 'strip'); ?>vh - 46px);
     }
 }
 <?php
@@ -3102,8 +3105,8 @@ max-width: calc(100vw -  38px);
             if ($header_image || $header_color) {
 ?>
 #masthead-wrapper {<?php if ($header_color) { ?>
-    background-color: <?php echo $header_color; ?>;<?php } if ($header_image) { ?>
-    background-image: url("<?php echo (wp_get_attachment_image_src($header_image, 'full') ? wp_get_attachment_image_src($header_image, 'full')[0] : ''); ?>");<?php } ?>
+    background-color: <?php echo wp_kses($header_color, 'strip'); ?>;<?php } if ($header_image) { ?>
+    background-image: url("<?php echo esc_url(wp_get_attachment_image_src($header_image, 'full') ? wp_get_attachment_image_src($header_image, 'full')[0] : ''); ?>");<?php } ?>
     background-size: cover;
     background-repeat: no-repeat;<?php if (get_theme_mod('fix_header_background_image')) { ?>
     background-attachment: fixed;<?php } ?>
@@ -3125,16 +3128,16 @@ max-width: calc(100vw -  38px);
 
 ?>
 .site-header {
-    padding-top: <?php echo ($this->oftto_are_title_and_tagline_displayed() ? round($mod * 22.5 / 72, 1) . 'px' : '74px'); ?>;
+    padding-top: <?php echo wp_kses(($this->oftto_are_title_and_tagline_displayed() ? round($mod * 22.5 / 72, 1) . 'px' : '74px'), 'strip'); ?>;
 }
 @media only screen and (min-width: 482px) {
     .site-header {
-        padding-top: <?php echo round($mod * 40 / 72, 1); ?>px;
+        padding-top: <?php echo wp_kses(round($mod * 40 / 72, 1), 'strip'); ?>px;
     }
 }
 @media only screen and (min-width: 822px) {
     .site-header {
-        padding-top: <?php echo $mod; ?>px;
+        padding-top: <?php echo wp_kses($mod, 'strip'); ?>px;
     }
 }
 <?php
@@ -3148,16 +3151,16 @@ max-width: calc(100vw -  38px);
 
 ?>
 .site-header {
-    padding-bottom: <?php echo round($mod * 60 / 90, 1); ?>px;
+    padding-bottom: <?php echo wp_kses(round($mod * 60 / 90, 1), 'strip'); ?>px;
 }
 @media only screen and (min-width: 482px) {
     .site-header {
-        padding-bottom: <?php echo round($mod * 40 / 90, 1); ?>px;
+        padding-bottom: <?php echo wp_kses(round($mod * 40 / 90, 1), 'strip'); ?>px;
     }
 }
 @media only screen and (min-width: 822px) {
     .site-header {
-        padding-bottom: <?php echo $mod; ?>px;
+        padding-bottom: <?php echo wp_kses($mod, 'strip'); ?>px;
     }
 }
 <?php
@@ -3191,7 +3194,7 @@ max-width: calc(100vw -  38px);
 
 ?>
 .site-header .site-logo .custom-logo {
-    max-width: <?php echo $mod; ?>px;
+    max-width: <?php echo wp_kses($mod, 'strip'); ?>px;
     max-height: none;
     width: 100%;
 }
@@ -3213,7 +3216,7 @@ max-width: calc(100vw -  38px);
             if ('mobile' === $mod) {
 
 ?>
-@media screen and (max-width: <?php echo $mobile_breakpoint; ?>px) {
+@media screen and (max-width: <?php echo wp_kses($mobile_breakpoint, 'strip'); ?>px) {
     .site-branding, .site-header:not(.has-logo).has-title-and-tagline .site-branding {
         width: 100%;
         max-width: none;
@@ -3224,7 +3227,7 @@ max-width: calc(100vw -  38px);
             } elseif ('desktop' === $mod) {
 
 ?>
-@media screen and (min-width: <?php echo $mobile_breakpoint + 1; ?>px) {
+@media screen and (min-width: <?php echo wp_kses($mobile_breakpoint + 1, 'strip'); ?>px) {
     .site-branding, .site-header:not(.has-logo).has-title-and-tagline .site-branding {
         width: 100%;
         max-width: none;
@@ -3252,7 +3255,7 @@ max-width: calc(100vw -  38px);
 
 ?>
 .site-title {
-    font-size: <?php echo $mod / 1000; ?>rem;
+    font-size: <?php echo wp_kses($mod / 1000, 'strip'); ?>rem;
 }
 <?php
 
@@ -3384,17 +3387,6 @@ body:not(.primary-navigation-open) .site-header.has-logo.has-title-and-tagline .
 
             }
 
-
-
-
-
-
-
-
-
-
-
-
             if (get_theme_mod('mobile_submenus_on_desktop')) {
 
                 if ($mobile_breakpoint > 481 || get_theme_mod('mobile_nav_on_desktop')) {
@@ -3408,7 +3400,7 @@ body:not(.primary-navigation-open) .site-header.has-logo.has-title-and-tagline .
                     } else {
 
 ?>
-@media only screen and (min-width: 481px) and (max-width: <?php echo $mobile_breakpoint; ?>px) {
+@media only screen and (min-width: 481px) and (max-width: <?php echo wp_kses($mobile_breakpoint, 'strip'); ?>px) {
 <?php
 
                     }
@@ -3540,7 +3532,7 @@ body:not(.primary-navigation-open) .site-header.has-logo.has-title-and-tagline .
 
             if ($mod) {
 ?>
-@media only screen and (max-width: <?php echo $mobile_breakpoint; ?>px) {
+@media only screen and (max-width: <?php echo wp_kses($mobile_breakpoint, 'strip'); ?>px) {
 <?php
 
                 if ($mod === 'left') {
@@ -3587,7 +3579,7 @@ body:not(.primary-navigation-open) .site-header.has-logo.has-title-and-tagline .
 
             if ($mod) {
 ?>
-@media only screen and (min-width: <?php echo $mobile_breakpoint + 1; ?>px) {
+@media only screen and (min-width: <?php echo wp_kses($mobile_breakpoint + 1, 'strip'); ?>px) {
 <?php
 
                 if ($mod === 'left') {
@@ -3640,7 +3632,7 @@ body:not(.primary-navigation-open) .site-header.has-logo.has-title-and-tagline .
 
 ?>
 .primary-navigation > .primary-menu-container, .primary-navigation-open .primary-navigation > .primary-menu-container {
-    border-width: <?php echo $mod; ?>px;
+    border-width: <?php echo wp_kses($mod, 'strip'); ?>px;
 }
 <?php
 
@@ -3654,9 +3646,9 @@ body:not(.primary-navigation-open) .site-header.has-logo.has-title-and-tagline .
             if ($mod) {
 
 ?>
-@media only screen and (min-width: <?php echo $mobile_breakpoint + 1; ?>px) {
+@media only screen and (min-width: <?php echo wp_kses($mobile_breakpoint + 1, 'strip'); ?>px) {
     .primary-navigation {
-        padding: <?php echo $mod; ?>px 0;
+        padding: <?php echo wp_kses($mod, 'strip'); ?>px 0;
     }
 }
 <?php
@@ -3681,8 +3673,8 @@ body:not(.primary-navigation-open) .site-header.has-logo.has-title-and-tagline .
 ?>
 @media only screen and (max-width: 481px) {
 .menu-button-container .button.button .dropdown-icon.open .svg-icon {
-width: <?php echo $mod; ?>px;
-height: <?php echo $mod; ?>px;
+width: <?php echo wp_kses($mod, 'strip'); ?>px;
+height: <?php echo wp_kses($mod, 'strip'); ?>px;
 }
 }
 <?php
@@ -3694,14 +3686,14 @@ height: <?php echo $mod; ?>px;
 ?>
 @media only screen and (min-width: 482px) {
 .menu-button-container .button.button .dropdown-icon.open .svg-icon {
-width: <?php echo (($mod - 24) / 2) + 24; ?>px;
-height: <?php echo (($mod - 24) / 2) + 24; ?>px;
+width: <?php echo wp_kses((($mod - 24) / 2) + 24, 'strip'); ?>px;
+height: <?php echo wp_kses((($mod - 24) / 2) + 24, 'strip'); ?>px;
 }
 }
 @media only screen and (min-width: 822px) {
 .menu-button-container .button.button .dropdown-icon.open .svg-icon {
-width: <?php echo $mod; ?>px;
-height: <?php echo $mod; ?>px;
+width: <?php echo wp_kses($mod, 'strip'); ?>px;
+height: <?php echo wp_kses($mod, 'strip'); ?>px;
 }
 }
 <?php
@@ -3727,7 +3719,7 @@ height: <?php echo $mod; ?>px;
 ?>
 @media only screen and (max-width: 481px) {
 .primary-navigation a:link, .primary-navigation a:visited {
-color: <?php echo $mod; ?>;
+color: <?php echo wp_kses($mod, 'strip'); ?>;
 }
 }
 <?php
@@ -3739,7 +3731,7 @@ color: <?php echo $mod; ?>;
 ?>
 @media only screen and (max-width: 481px) {
 .primary-navigation a:hover {
-color: <?php echo $mod; ?>;
+color: <?php echo wp_kses($mod, 'strip'); ?>;
 }
 }
 <?php
@@ -3752,27 +3744,27 @@ color: <?php echo $mod; ?>;
             if ($size) {
 
 ?>
-@media only screen and (min-width: <?php echo $mobile_breakpoint + 1; ?>px) {
+@media only screen and (min-width: <?php echo wp_kses($mobile_breakpoint + 1, 'strip'); ?>px) {
     .primary-navigation .primary-menu-container > ul > .menu-item > a {
-    	padding: <?php echo $size / 1000 * 0.75; ?>rem;
-    	font-size: <?php echo $size / 1000; ?>rem;
-    	line-height: <?php echo $size / 1000; ?>rem;
+    	padding: <?php echo wp_kses($size / 1000 * 0.75, 'strip'); ?>rem;
+    	font-size: <?php echo wp_kses($size / 1000, 'strip'); ?>rem;
+    	line-height: <?php echo wp_kses($size / 1000, 'strip'); ?>rem;
     }
     .primary-navigation .primary-menu-container > ul > #menu-item-search > .svg-icon {
-    	width: <?php echo $size / 1000; ?>rem;
-    	height: <?php echo $size / 1000; ?>rem;
+    	width: <?php echo wp_kses($size / 1000, 'strip'); ?>rem;
+    	height: <?php echo wp_kses($size / 1000, 'strip'); ?>rem;
     }
 	.primary-navigation > div > .menu-wrapper .sub-menu-toggle {
-	    height: <?php echo $size / 1000 * 2.5; ?>rem;
+	    height: <?php echo wp_kses($size / 1000 * 2.5, 'strip'); ?>rem;
     }
     .primary-navigation > div > .menu-wrapper .sub-menu-toggle .icon-plus svg, .primary-navigation > div > .menu-wrapper .sub-menu-toggle .icon-minus svg {
-    	height: <?php echo $size / 1000; ?>rem;
-    	width: <?php echo $size / 1000; ?>rem;
+    	height: <?php echo wp_kses($size / 1000, 'strip'); ?>rem;
+    	width: <?php echo wp_kses($size / 1000, 'strip'); ?>rem;
     	margin-top: 0;
-    	margin-right: <?php echo $size / 1000 * 0.15; ?>rem;
+    	margin-right: <?php echo wp_kses($size / 1000 * 0.15, 'strip'); ?>rem;
     }
     .primary-navigation > div > .menu-wrapper .sub-menu-toggle {
-    	width: <?php echo $size / 1000 * 2; ?>rem;
+    	width: <?php echo wp_kses($size / 1000 * 2, 'strip'); ?>rem;
     }
 }
 <?php
@@ -3787,10 +3779,10 @@ color: <?php echo $mod; ?>;
                 $mod = ($mod - 1) / 100;
 
 ?>
-@media only screen and (min-width: <?php echo $mobile_breakpoint + 1; ?>px) {
+@media only screen and (min-width: <?php echo wp_kses($mobile_breakpoint + 1, 'strip'); ?>px) {
     .primary-navigation .primary-menu-container > ul > .menu-item > a {
-    	padding-left: <?php echo round($size * $mod, 2); ?>rem;
-    	padding-right: <?php echo round($size * $mod, 2); ?>rem;
+    	padding-left: <?php echo wp_kses(round($size * $mod, 2), 'strip'); ?>rem;
+    	padding-right: <?php echo wp_kses(round($size * $mod, 2), 'strip'); ?>rem;
     }
 }
 <?php
@@ -3804,12 +3796,12 @@ color: <?php echo $mod; ?>;
             if ($mod) {
 ?>
 .primary-navigation .sub-menu {
-    border-color: <?= $mod; ?>;
+    border-color: <?php echo wp_kses($mod, 'strip'); ?>;
 }
 @media only screen and (min-width: 482px) {
 	.primary-navigation > div > .menu-wrapper > li > .sub-menu:before,
 	.primary-navigation > div > .menu-wrapper > li > .sub-menu:after {
-		border-color: <?= $mod; ?> transparent;
+		border-color: <?php echo wp_kses($mod, 'strip'); ?> transparent;
 	}
 }
 <?php
@@ -3823,10 +3815,10 @@ color: <?php echo $mod; ?>;
 ?>
 @media only screen and (min-width: 482px) {
     .primary-navigation > div > .menu-wrapper > li > .sub-menu:after {
-        border-bottom-color: <?php echo $mod; ?>;
+        border-bottom-color: <?php echo wp_kses($mod, 'strip'); ?>;
     }
     .primary-navigation > div > .menu-wrapper > li > .sub-menu, .primary-navigation > div > .menu-wrapper > li > .sub-menu li {
-        background-color: <?php echo $mod; ?>;
+        background-color: <?php echo wp_kses($mod, 'strip'); ?>;
     }
 }
 <?php
@@ -3836,9 +3828,9 @@ color: <?php echo $mod; ?>;
 
             if ($mod) {
 ?>
-@media only screen and (min-width: <?php echo $mobile_breakpoint + 1; ?>px) {
+@media only screen and (min-width: <?php echo wp_kses($mobile_breakpoint + 1, 'strip'); ?>px) {
     .primary-navigation .sub-menu .menu-item > a:link, .primary-navigation .sub-menu .menu-item > a:visited {
-        color: <?php echo $mod; ?>;
+        color: <?php echo wp_kses($mod, 'strip'); ?>;
     }
 }
 <?php
@@ -3849,11 +3841,11 @@ color: <?php echo $mod; ?>;
             if ($mod) {
 ?>
 .primary-navigation .sub-menu .menu-item > a {
-    font-size: <?php echo $mod / 1000 * 1.125; ?>rem;
+    font-size: <?php echo wp_kses($mod / 1000 * 1.125, 'strip'); ?>rem;
 }
 @media only screen and (min-width: 482px) {
     .primary-navigation .sub-menu .menu-item > a {
-        font-size: <?php echo $mod / 1000; ?>rem;
+        font-size: <?php echo wp_kses($mod / 1000, 'strip'); ?>rem;
     }
 }
 <?php
@@ -3895,11 +3887,11 @@ color: <?php echo $mod; ?>;
             if ($mod) {
 ?>
 .entry-title {
-    font-size: <?php echo $mod / 1000 * 0.9; ?>rem;
+    font-size: <?php echo wp_kses($mod / 1000, 'strip'); ?>rem;
 }
 @media only screen and (min-width: 652px) {
     .entry-title {
-        font-size: <?php echo $mod / 1000; ?>rem;
+        font-size: <?php echo wp_kses($mod / 1000, 'strip'); ?>rem;
     }
 }
 <?php
@@ -3912,11 +3904,11 @@ color: <?php echo $mod; ?>;
             if ($mod) {
 ?>
 .site-main > article .entry-content {
-	margin-top: <?php echo $mod - 1; ?>px;
+	margin-top: <?php echo wp_kses($mod - 1, 'strip'); ?>px;
 }
 @media only screen and (min-width: 482px) {
 .site-main > article .entry-content {
-	margin-top: <?php echo round(($mod - 1) / 3 * 2, 1); ?>px;
+	margin-top: <?php echo wp_kses(round(($mod - 1) / 3 * 2, 1), 'strip'); ?>px;
 }
 }
 <?php
@@ -3936,11 +3928,11 @@ color: <?php echo $mod; ?>;
             if ($mod) {
 ?>
 .comments-title, .comment-reply-title {
-    font-size: <?php echo $mod / 1000 * 0.75; ?>rem;
+    font-size: <?php echo wp_kses($mod / 1000 * 0.75, 'strip'); ?>rem;
 }
 @media only screen and (min-width: 652px) {
     .comments-title, .comment-reply-title {
-        font-size: <?php echo $mod / 1000; ?>rem;
+        font-size: <?php echo wp_kses($mod / 1000, 'strip'); ?>rem;
     }
 }
 <?php
@@ -3967,8 +3959,8 @@ color: <?php echo $mod; ?>;
 
 ?>
 #footer-wrapper {<?php if ($footer_color) { ?>
-    background-color: <?php echo $footer_color; ?>;<?php } if ($footer_image) { ?>
-    background-image: url("<?php echo (wp_get_attachment_image_src($footer_image, 'full') ? wp_get_attachment_image_src($footer_image, 'full')[0] : ''); ?>");<?php } ?>
+    background-color: <?php echo wp_kses($footer_color, 'strip'); ?>;<?php } if ($footer_image) { ?>
+    background-image: url("<?php echo esc_url(wp_get_attachment_image_src($footer_image, 'full') ? wp_get_attachment_image_src($footer_image, 'full')[0] : ''); ?>");<?php } ?>
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -3988,11 +3980,11 @@ color: <?php echo $mod; ?>;
             if ($mod) {
 ?>
 .widget-area, .no-widgets .site-footer {
-	margin-top: <?php echo $mod -1; ?>px;
+	margin-top: <?php echo wp_kses($mod -1, 'strip'); ?>px;
 }
 @media only screen and (max-width: 481px) {
 	.widget-area {
-		margin-top: <?php echo ceil(($mod -1) / 2); ?>px;
+		margin-top: <?php echo wp_kses(ceil(($mod -1) / 2), 'strip'); ?>px;
 	}
 }
 <?php
@@ -4004,7 +3996,7 @@ color: <?php echo $mod; ?>;
 ?>
 .widget-area {
 	display: grid;
-	grid-template-columns: repeat(<?php echo $mod; ?>, 1fr);
+	grid-template-columns: repeat(<?php echo wp_kses($mod, 'strip'); ?>, 1fr);
 	column-gap: calc(2 * var(--global--spacing-horizontal));
 }
 <?php
@@ -4016,7 +4008,7 @@ color: <?php echo $mod; ?>;
 ?>
 @media only screen and (min-width: 652px) {
 	.widget-area {
-		grid-template-columns: repeat(<?php echo $mod; ?>, 1fr);
+		grid-template-columns: repeat(<?php echo wp_kses($mod, 'strip'); ?>, 1fr);
 	}
 }
 <?php
@@ -4028,7 +4020,7 @@ color: <?php echo $mod; ?>;
 ?>
 @media only screen and (min-width: 1024px) {
 	.widget-area {
-		grid-template-columns: repeat(<?php echo $mod; ?>, 1fr);
+		grid-template-columns: repeat(<?php echo wp_kses($mod, 'strip'); ?>, 1fr);
 	}
 }
 <?php
@@ -4041,17 +4033,17 @@ color: <?php echo $mod; ?>;
 ?>
 @media only screen and (min-width: 822px) {
 	.site-footer {
-		max-width: min(calc(100vw - 8 * var(--global--spacing-horizontal)), <?php echo $mod; ?>px);
+		max-width: min(calc(100vw - 8 * var(--global--spacing-horizontal)), <?php echo wp_kses($mod, 'strip'); ?>px);
 	}
 }
-@media only screen and (min-width: 822px) and (max-width: <?php echo $mod + 200; ?>px) {
+@media only screen and (min-width: 822px) and (max-width: <?php echo wp_kses($mod + 200, 'strip'); ?>px) {
     .site-footer {
     	max-width: calc(100vw - 200px);
     }
 }
-@media only screen and (min-width: <?php echo $mod + 201; ?>px) {
+@media only screen and (min-width: <?php echo wp_kses($mod + 201, 'strip'); ?>px) {
     .site-footer {
-    	max-width: <?php echo $mod; ?>px;
+    	max-width: <?php echo wp_kses($mod, 'strip'); ?>px;
     }
 }
 <?php
@@ -4096,7 +4088,7 @@ color: <?php echo $mod; ?>;
 
 ?>
 .site-footer .site-logo .custom-logo {
-    max-width: <?php echo $mod; ?>px;
+    max-width: <?php echo wp_kses($mod, 'strip'); ?>px;
     max-height: none;
     width: 100%;
 }
@@ -4351,7 +4343,7 @@ color: <?php echo $mod; ?>;
 
                     if ($breadcrumbs) {
 
-                        echo '<div id="breadcrumbs" class="alignwide">' . $breadcrumbs . '</div>';
+                        echo wp_kses('<div id="breadcrumbs" class="alignwide">' . $breadcrumbs . '</div>', 'post');
 
                     } elseif (function_exists('bcn_display')) {
 
@@ -4548,12 +4540,13 @@ color: <?php echo $mod; ?>;
 <p><strong><?php esc_html_e('Options for Twenty Twenty-One Plugin Error', 'options-for-twenty-twenty-one'); ?></strong><br />
 <?php
         printf(
-            __('This plugin requires the default Wordpress theme Twenty Twenty-One to be active or live previewed in order to function. Your theme "%s" is not compatible.', 'options-for-twenty-twenty-one'),
-            get_template()
+/* translators: active theme slug */
+            esc_html(__('This plugin requires the default Wordpress theme Twenty Twenty-One to be active or live previewed in order to function. Your theme "%s" is not compatible.', 'options-for-twenty-twenty-one')),
+            esc_html(get_template())
         );
 ?>
 
-<a href="<?php echo add_query_arg('search', 'twentytwentyone', admin_url('theme-install.php')); ?>" title="<?php esc_attr_e('Twenty Twenty-One', 'options-for-twenty-twenty-one'); ?>"><?php
+<a href="<?php echo esc_url(add_query_arg('search', 'twentytwentyone', admin_url('theme-install.php'))); ?>" title="<?php esc_attr_e('Twenty Twenty-One', 'options-for-twenty-twenty-one'); ?>"><?php
         esc_html_e('Please install and activate or live preview the Twenty Twenty-One theme (or a child theme thereof)', 'options-for-twenty-twenty-one');
 ?></a>.</p>
 
