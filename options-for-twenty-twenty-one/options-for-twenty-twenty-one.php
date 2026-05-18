@@ -1,7 +1,7 @@
 <?php
 /*
  * Plugin Name: Options for Twenty Twenty-One
- * Version: 1.7.9
+ * Version: 1.8.0
  * Plugin URI: https://webd.uk/product/options-for-twenty-twenty-one-upgrade/
  * Description: Adds powerful customizer options to modify all aspects of the default Wordpress theme Twenty Twenty-One
  * Author: Webd Ltd
@@ -23,7 +23,7 @@ if (!class_exists('options_for_twenty_twenty_one_class')) {
 
 	class options_for_twenty_twenty_one_class {
 
-        public static $version = '1.7.9';
+        public static $version = '1.8.0';
 
 		function __construct() {
 
